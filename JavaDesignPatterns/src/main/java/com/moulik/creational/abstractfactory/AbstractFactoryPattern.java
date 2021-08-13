@@ -1,4 +1,4 @@
-package com.moulik.abstractfactory;
+package com.moulik.creational.abstractfactory;
 
 public class AbstractFactoryPattern {
 
