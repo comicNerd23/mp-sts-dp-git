@@ -8,7 +8,7 @@ public class EmployeeRecord implements Prototype {
 	private String address;
 	
 	public EmployeeRecord() {
-		System.out.println("   Employee Records of Oracle Corporation ");  
+		System.out.println(" Employee Records of Oracle Corporation ");  
         System.out.println("---------------------------------------------");  
         System.out.println("Eid"+"\t"+"Ename"+"\t"+"Edesignation"+"\t"+"Esalary"+"\t\t"+"Eaddress");
 	}
@@ -31,6 +31,4 @@ public class EmployeeRecord implements Prototype {
 		return new EmployeeRecord(id,name,designation,salary,address);
 	}
 
-	
-	
 }

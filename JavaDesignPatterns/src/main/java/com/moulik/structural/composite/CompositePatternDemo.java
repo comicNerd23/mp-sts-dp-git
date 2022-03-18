@@ -1,7 +1,8 @@
 package com.moulik.structural.composite;
 
 /**
- * A Composite Pattern says that just "allow clients to operate in generic manner on objects that may or may not represent a hierarchy of objects".
+ * A Composite Pattern says that just "allow clients to operate in generic manner on objects that may or may not 
+ * represent a hierarchy of objects".
  * 
  * Advantages:
  * 	It defines class hierarchies that contain primitive and complex objects.

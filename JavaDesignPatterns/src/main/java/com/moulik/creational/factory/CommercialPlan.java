@@ -6,5 +6,10 @@ public class CommercialPlan extends Plan {
 	void getRate() {
 		rate=7.50;
 	}
+
+	@Override
+	void getName() {
+		name = "COM";
+	}
 	
 }
