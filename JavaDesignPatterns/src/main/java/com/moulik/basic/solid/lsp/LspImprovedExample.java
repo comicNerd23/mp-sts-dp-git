@@ -25,10 +25,9 @@ public class LspImprovedExample {
 
 		Object[] objects = {new Square(5), new Circle(7)};
 		VolumeCalculator ac  = new VolumeCalculator(objects);
-		Outputter aco = new Outputter(ac);
-		aco.outputToConsole();
-		aco.outputAsHtml();
-		aco.outputAsJson();
+
+		Outputter aco = new ConsoleOutputter();
+		aco.output(String.valueOf(ac.calculateSum()));
 		
 	}
 
@@ -39,7 +38,7 @@ class VolumeCalculator extends AreaCalculator {
 		super(objects);
 	}
 	
-	public double calculateSum() {
+	public double calculateVolume() {
 		//double[] sum = new double[this.objects.length];
 		double sum = 0;
 		for(Object s : objects) {
@@ -138,25 +137,33 @@ class AreaCalculator {
  * 	It has now only ONE method: 
  * 	output(): to output the area
  */
-class Outputter {
+/**
+ * 	This class is used to output the calculatedSum. 
+ * 	It has now only ONE method: 
+ * 	output(): to output the area
+ */
+interface Outputter {
 	
-	private AreaCalculator ac;
+	public void output(String str) ;
 	
-	public Outputter(AreaCalculator ac) {
-		this.ac = ac;
+}
+class ConsoleOutputter implements Outputter {
+	
+	@Override
+	public void output(String str) {
+		System.out.println("The sum is "+str);
 	}
-	
-	public void outputToConsole() {
-		System.out.println("The sum is "+ac.calculateSum());
+}
+class HtmlOutputter implements Outputter {
+	@Override
+	public void output(String str) {
+		//Code to output as HTML ("The sum is "+str);
 	}
-	
-	public void outputAsHtml() {
-		System.out.println("The html sum is "+ac.calculateSum());
+}
+class JsonOutputter implements Outputter {
+	@Override
+	public void output(String str) {
+		//Code to output as JSON ("The sum is "+str);
 	}
-	
-	public void outputAsJson() {
-		System.out.println("The json sum is "+ac.calculateSum());
-	}
-	
 }
 

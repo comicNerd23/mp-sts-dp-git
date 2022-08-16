@@ -2,14 +2,14 @@ package com.moulik.basic.solid.ocp;
 
 /**
  * Open-closed Principle (OCP) states: Objects or entities should be open for extension but closed for modification.
- * This means that a class should be extendable without modifying the class itself.
+ * This means that a class should be extendible for new changes without modifying the class itself.
  * 
  * Lets revisit the example of SrpImprovedDemo and specifically look at the sum method.
  * Consider a scenario where the user would like the sum of additional shapes like triangles, pentagons, hexagons etc.
  * You would have to constantly edit this file and add more if/else blocks. That would violate the open-closed principle.
  * 
  * A way you can make this sum method better is to remove the logic to calculate the area of each shape out of the 
- * AreaCalculator class method and attach it to each shape’s class.
+ * AreaCalculator class method and attach it to each shapeï¿½s class.
  * But there is still another issue. How do we make sure that whatever object we are passing to AreaCalculator is 
  * actually a shape or it has an area method defined for it?
  * We do that by creating an interface called Shapeable (or ShapeInterface in other languages) that supports method area().
@@ -28,10 +28,9 @@ public class OcpImprovedExample {
 		
 		Object[] objects = {new Square(5), new Circle(7)};
 		AreaCalculator ac  = new AreaCalculator(objects);
-		Outputter aco = new Outputter(ac);
-		aco.outputToConsole();
-		aco.outputAsHtml();
-		aco.outputAsJson();
+		
+		Outputter aco = new ConsoleOutputter();
+		aco.output(String.valueOf(ac.calculateSum()));
 		
 	}
 
@@ -106,28 +105,31 @@ class AreaCalculator {
 	
 }
 /**
- * 	This class is used to output the calculatedAreaSum. 
+ * 	This class is used to output the calculatedSum. 
  * 	It has now only ONE method: 
  * 	output(): to output the area
  */
-class Outputter {
+interface Outputter {
 	
-	private AreaCalculator ac;
+	public void output(String str) ;
 	
-	public Outputter(AreaCalculator ac) {
-		this.ac = ac;
+}
+class ConsoleOutputter implements Outputter {
+	
+	@Override
+	public void output(String str) {
+		System.out.println("The sum is "+str);
 	}
-	
-	public void outputToConsole() {
-		System.out.println("The sum is "+ac.calculateSum());
+}
+class HtmlOutputter implements Outputter {
+	@Override
+	public void output(String str) {
+		//Code to output as HTML ("The sum is "+str);
 	}
-	
-	public void outputAsHtml() {
-		System.out.println("The html sum is "+ac.calculateSum());
+}
+class JsonOutputter implements Outputter {
+	@Override
+	public void output(String str) {
+		//Code to output as JSON ("The sum is "+str);
 	}
-	
-	public void outputAsJson() {
-		System.out.println("The json sum is "+ac.calculateSum());
-	}
-	
 }

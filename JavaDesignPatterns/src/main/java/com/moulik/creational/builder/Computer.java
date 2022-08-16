@@ -1,10 +1,12 @@
 package com.moulik.creational.builder;
 
 /**
- * 1. Create Main outer class with fields and getters.
+ * 1. Create Main outer class with fields and getters and a private constructor that takes in Builder object and uses this
+ * builder object to set the fields.
  * 
  * Create the main class like Computer with private required and optional parameters. This class will have only 
- * public getters, no setters and private constructor with Builder argument.
+ * public getters, no setters and private constructor with Builder argument. This constructor's task is to set the internal
+ * field using fields from builder.
  * 
  * 2. Create static nested class called Builder with same fields.
  * 
@@ -78,6 +80,7 @@ public class Computer {
 			this.RAM = ram;
 		}
 
+		//STEP 4: Create setters that return this object
 		public ComputerBuilder setGraphicsCardEnabled(boolean isGraphicsCardEnabled) {
 			this.isGraphicsCardEnabled = isGraphicsCardEnabled;
 			return this;
@@ -88,6 +91,7 @@ public class Computer {
 			return this;
 		}
 
+		//STEP 5: Create build() which returns private constructor containing builder object
 		public Computer build() {
 			return new Computer(this);
 		}
